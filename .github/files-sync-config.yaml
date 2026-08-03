@@ -1,0 +1,14 @@
+settings:
+  pull_request:
+    labels:
+      - automated
+      - file-sync
+patterns:
+  - files:
+      - .github/workflows/pr-agent.yml
+      - .githuib/dependabot.yml
+      - .golangci.yml
+    repositories:
+      - monitoring-forge/ltsvparser
+      - monitoring-forge/mackerel-plugin-jsonl
+      - monitoring-forge/mackerel-plugin-dnsdist
