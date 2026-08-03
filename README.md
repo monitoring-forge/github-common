@@ -5,7 +5,7 @@
 ## 対象ファイル
 
 - .github/workflows/pr-agent.yml
-- .githuib/dependabot.yml
+- .github/dependabot.yml
 - .golangci.yml
 
 
