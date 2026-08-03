@@ -16,6 +16,7 @@ jobs:
               with:
                   client-id: ${{ secrets.CLIENT_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
+                  owner: ${{ github.repository_owner }}
             - name: Sync files
               uses: wadackel/files-sync-action@2c7a879da054365c87c0bb8fa08de559f385ed43 # v3
               with:
