@@ -6,7 +6,7 @@ settings:
 patterns:
   - files:
       - .github/workflows/pr-agent.yml
-      - .githuib/dependabot.yml
+      - .github/dependabot.yml
       - .golangci.yml
     repositories:
       - monitoring-forge/ltsvparser

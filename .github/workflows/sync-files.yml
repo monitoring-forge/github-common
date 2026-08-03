@@ -9,14 +9,14 @@ jobs:
     sync:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v7
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
             - name: Generate GitHub App Token
               id: app-token
-              uses: actions/create-github-app-token@v3
+              uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
               with:
                   client-id: ${{ secrets.CLIENT_ID }}
                   private-key: ${{ secrets.APP_PRIVATE_KEY }}
             - name: Sync files
-              uses: wadackel/files-sync-action@v3
+              uses: wadackel/files-sync-action@2c7a879da054365c87c0bb8fa08de559f385ed43 # v3
               with:
                   github_token: ${{ steps.app-token.outputs.token }}
