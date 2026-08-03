@@ -9,6 +9,35 @@ patterns:
       - .github/dependabot.yml
       - .golangci.yml
     repositories:
+      - monitoring-forge/check-cert-net
+      - monitoring-forge/check-diff
+      - monitoring-forge/check-dns-multi
+      - monitoring-forge/check-lastlog
+      - monitoring-forge/check-sakura-object-storage-usage
+      - monitoring-forge/check_ftp2
+      - monitoring-forge/check_http2
+      - monitoring-forge/check_ssl_certificate2
+      - monitoring-forge/followparser
+      - monitoring-forge/isius
       - monitoring-forge/ltsvparser
-      - monitoring-forge/mackerel-plugin-jsonl
+      - monitoring-forge/mackerel-plugin-axslog
+      - monitoring-forge/mackerel-plugin-command-status
+      - monitoring-forge/mackerel-plugin-dns-synthetic
       - monitoring-forge/mackerel-plugin-dnsdist
+      - monitoring-forge/mackerel-plugin-httping
+      - monitoring-forge/mackerel-plugin-jsonl
+      - monitoring-forge/mackerel-plugin-linux-memory
+      - monitoring-forge/mackerel-plugin-linux-netdev
+      - monitoring-forge/mackerel-plugin-linux-process-status
+      - monitoring-forge/mackerel-plugin-linux-usage
+      - monitoring-forge/mackerel-plugin-log-counter
+      - monitoring-forge/mackerel-plugin-log-incr-rate
+      - monitoring-forge/mackerel-plugin-maxcpu
+      - monitoring-forge/mackerel-plugin-pdns
+      - monitoring-forge/mackerel-plugin-pinging
+      - monitoring-forge/mackerel-plugin-postfix-log
+      - monitoring-forge/mackerel-plugin-resolver-synthetic
+      - monitoring-forge/mackerel-plugin-tidb-process-list
+      - monitoring-forge/rotatewriter
+      - monitoring-forge/selfsigned
+      - monitoring-forge/statusboard
