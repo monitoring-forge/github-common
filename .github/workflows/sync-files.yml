@@ -1,23 +1,35 @@
-name: Sync Files
+name: Sync Files with tagpr
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
-    sync:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-            - name: Generate GitHub App Token
-              id: app-token
-              uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
-              with:
-                  client-id: ${{ secrets.CLIENT_ID }}
-                  private-key: ${{ secrets.APP_PRIVATE_KEY }}
-                  owner: ${{ github.repository_owner }}
-            - name: Sync files
-              uses: wadackel/files-sync-action@2c7a879da054365c87c0bb8fa08de559f385ed43 # v3
-              with:
-                  github_token: ${{ steps.app-token.outputs.token }}
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: Songmu/tagpr@d1b8138b7a31075141b6cd64103de9485ced7ac9 # v1
+        id: tagpr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate GitHub App Token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+        if: ${{ steps.tagpr.outputs.tag != ''}}
+
+      - name: Sync files
+        uses: wadackel/files-sync-action@2c7a879da054365c87c0bb8fa08de559f385ed43 # v3
+        with:
+          github_token: ${{ steps.app-token.outputs.token }}
+        if: ${{ steps.tagpr.outputs.tag != ''}}
