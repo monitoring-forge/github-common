@@ -41,3 +41,4 @@ patterns:
       - monitoring-forge/rotatewriter
       - monitoring-forge/selfsigned
       - monitoring-forge/statusboard
+      - monitoring-forge/saferio
