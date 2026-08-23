@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.0.2](https://github.com/monitoring-forge/github-common/compare/v0.0.1...v0.0.2) - 2026-08-23
+
+- Add saferio to files sync configuration by @kazeburo in https://github.com/monitoring-forge/github-common/pull/9
+- ci: bump the-pr-agent/pr-agent from 0.41.1 to 0.42.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/10
+- fix: update model and fallback models in PR agent configuration by @kazeburo in https://github.com/monitoring-forge/github-common/pull/12
+
 ## [v0.0.1](https://github.com/monitoring-forge/github-common/commits/v0.0.1) - 2026-08-09
 
 - ci: bump actions/checkout from 4 to 7 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/1
