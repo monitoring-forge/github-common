@@ -42,3 +42,4 @@ patterns:
       - monitoring-forge/selfsigned
       - monitoring-forge/statusboard
       - monitoring-forge/saferio
+      - monitoring-forge/flagrun
