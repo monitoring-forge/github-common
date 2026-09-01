@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.0.3](https://github.com/monitoring-forge/github-common/compare/v0.0.2...v0.0.3) - 2026-09-01
+
+- ci: bump the-pr-agent/pr-agent from 0.42.0 to 0.43.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/13
+- このrepo用とsyncする用のdependabotを分割 by @kazeburo in https://github.com/monitoring-forge/github-common/pull/15
+
 ## [v0.0.2](https://github.com/monitoring-forge/github-common/compare/v0.0.1...v0.0.2) - 2026-08-23
 
 - Add saferio to files sync configuration by @kazeburo in https://github.com/monitoring-forge/github-common/pull/9
