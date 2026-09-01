@@ -6,7 +6,8 @@ settings:
 patterns:
   - files:
       - .github/workflows/pr-agent.yml
-      - .github/dependabot.yml
+      - from: .github/dependabot-for-sync.yml
+        to: .github/dependabot.yml
       - .golangci.yml
     repositories:
       - monitoring-forge/check-cert-net
