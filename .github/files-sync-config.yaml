@@ -44,3 +44,5 @@ patterns:
       - monitoring-forge/statusboard
       - monitoring-forge/saferio
       - monitoring-forge/flagrun
+      - monitoring-forge/sampdo
+      - monitoring-forge/linebuf
