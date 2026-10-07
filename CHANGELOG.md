@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.0.5](https://github.com/monitoring-forge/github-common/compare/v0.0.4...v0.0.5) - 2026-10-07
+
+- ci: bump the dependencies group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/21
+- Add new repositories to files sync configuration by @kazeburo in https://github.com/monitoring-forge/github-common/pull/22
+
 ## [v0.0.4](https://github.com/monitoring-forge/github-common/compare/v0.0.3...v0.0.4) - 2026-09-25
 
 - ci: bump the dependencies group with 3 updates by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/16
