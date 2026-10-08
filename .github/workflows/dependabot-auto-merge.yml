@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Verify tests and tagpr-only changes
         id: verify
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const {owner, repo} = context.repo;
@@ -115,7 +115,7 @@ jobs:
 
       - name: Merge with GitHub App to trigger push workflows
         if: steps.verify.outputs.pull-number != ''
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           PR_NUMBER: ${{ steps.verify.outputs.pull-number }}
           HEAD_SHA: ${{ steps.verify.outputs.head-sha }}
