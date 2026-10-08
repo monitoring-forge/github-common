@@ -12,9 +12,14 @@ updates:
     ignore:
       - dependency-name: "the-pr-agent/pr-agent"
     groups:
+      tagpr:
+        patterns:
+          - "Songmu/tagpr"
       dependencies:
         patterns:
           - "*"
+        exclude-patterns:
+          - "Songmu/tagpr"
     open-pull-requests-limit: 20
 
   - package-ecosystem: gomod
