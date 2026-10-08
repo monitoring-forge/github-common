@@ -37,7 +37,7 @@ jobs:
                 run.run_attempt !== eventRun.run_attempt ||
                 !['push', 'pull_request'].includes(run.event) ||
                 run.head_repository?.full_name !== fullName ||
-                !['.github/workflows/test.yml', '.github/workflows/ci.yml'].includes(run.path)) {
+                !['.github/workflows/test.yml', '.github/workflows/ci.yml'].includes(run.path?.split('@')[0])) {
               core.info('Skip: no current successful test run in this repository.');
               return;
             }
