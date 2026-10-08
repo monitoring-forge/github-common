@@ -6,6 +6,7 @@ settings:
 patterns:
   - files:
       - .github/workflows/pr-agent.yml
+      - .github/workflows/dependabot-auto-merge.yml
       - from: .github/dependabot-for-sync.yml
         to: .github/dependabot.yml
       - .golangci.yml
