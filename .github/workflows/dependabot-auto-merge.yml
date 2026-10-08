@@ -91,9 +91,22 @@ jobs:
               if (!latest || latest.id !== run.id || latest.status !== 'completed' ||
                   latest.conclusion !== 'success' || latest.run_attempt !== run.run_attempt) continue;
 
-              const {data: repository} = await github.rest.repos.get({owner, repo});
-              const method = repository.allow_merge_commit ? 'merge' :
-                repository.allow_squash_merge ? 'squash' : repository.allow_rebase_merge ? 'rebase' : null;
+              // REST omits allow_* settings for read-only tokens. GraphQL exposes them explicitly.
+              const {repository} = await github.graphql(`
+                query MergeMethods($owner: String!, $repo: String!) {
+                  repository(owner: $owner, name: $repo) {
+                    mergeCommitAllowed
+                    squashMergeAllowed
+                    rebaseMergeAllowed
+                  }
+                }
+              `, {owner, repo});
+              if (!repository || !['mergeCommitAllowed', 'squashMergeAllowed', 'rebaseMergeAllowed']
+                  .every(key => typeof repository[key] === 'boolean')) {
+                throw new Error('Could not determine enabled merge methods');
+              }
+              const method = repository.mergeCommitAllowed ? 'merge' :
+                repository.squashMergeAllowed ? 'squash' : repository.rebaseMergeAllowed ? 'rebase' : null;
               if (!method) throw new Error('No merge method is enabled');
               core.setOutput('pull-number', pr.number);
               core.setOutput('head-sha', pr.head.sha);

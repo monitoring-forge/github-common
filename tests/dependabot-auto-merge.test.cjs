@@ -20,15 +20,18 @@ async function scenario(change = () => {}) {
     files: [{filename: '.github/workflows/tagpr.yml', status: 'modified'}],
     before: 'steps:\n  - uses: Songmu/tagpr@old # v1\n    env:\n      TOKEN: example\n',
     after: 'steps:\n  - uses: Songmu/tagpr@new # v2\n    env:\n      TOKEN: example\n',
-    repository: {allow_merge_commit: true}, merged: []};
+    repository: {mergeCommitAllowed: true, squashMergeAllowed: true, rebaseMergeAllowed: true}, merged: []};
   change(state);
   const github = {rest: {
     actions: {getWorkflowRun: async () => ({data: state.run}), listWorkflowRuns: 'runs'},
     pulls: {list: 'prs', listFiles: 'files', get: async () => ({data: state.pr}),
       merge: async args => {state.merged.push(args); return {data: {merged: true, sha: 'merged'}};}},
-    repos: {get: async () => ({data: state.repository}), getContent: async args => ({data: {
+    repos: {get: async () => ({data: {}}), getContent: async args => ({data: {
       type: 'file', encoding: 'base64', content: Buffer.from(args.ref === 'base' ? state.before : state.after).toString('base64'),
     }})},
+  }, graphql: async (query, variables) => {
+    if (state.graphql) return state.graphql(query, variables);
+    return {repository: state.repository};
   }, paginate: async (method) => ({runs: [state.latest], prs: [state.pr], files: state.files})[method]};
   const context = {repo: {owner: 'monitoring-forge', repo: 'flagrun'},
     payload: {workflow_run: state.eventRun, repository: {default_branch: 'main'}}};
@@ -50,7 +53,7 @@ test('tagpr-only grouped update merges exactly the tested SHA', async () => {
 });
 test('pull_request CI and squash-only repositories are supported', async () => {
   const [merge] = await scenario(s => {s.run.event = 'pull_request'; s.run.path = '.github/workflows/ci.yml';
-    s.repository = {allow_squash_merge: true};});
+    s.repository = {mergeCommitAllowed: false, squashMergeAllowed: true, rebaseMergeAllowed: false};});
   assert.equal(merge.merge_method, 'squash');
 });
 for (const [name, change] of Object.entries({
@@ -77,3 +80,32 @@ for (const [name, change] of Object.entries({
   'latest pending': s => {s.latest.status = 'in_progress';},
   'latest attempt changed': s => {s.latest.run_attempt = 2;},
 })) test(`does not merge: ${name}`, async () => assert.deepEqual(await scenario(change), []));
+
+test('rebase-only repositories are supported', async () => {
+  const [merge] = await scenario(s => {s.repository = {
+    mergeCommitAllowed: false, squashMergeAllowed: false, rebaseMergeAllowed: true,
+  };});
+  assert.equal(merge.merge_method, 'rebase');
+});
+test('missing settings are not treated as disabled', async () => {
+  await assert.rejects(scenario(s => {s.repository = {};}), /Could not determine enabled merge methods/);
+});
+test('explicitly disabled methods stop the merge', async () => {
+  await assert.rejects(scenario(s => {s.repository = {
+    mergeCommitAllowed: false, squashMergeAllowed: false, rebaseMergeAllowed: false,
+  };}), /No merge method is enabled/);
+});
+test('read-only GITHUB_TOKEN can query merge methods', {skip: !process.env.MERGE_SETTINGS_TOKEN}, async () => {
+  await scenario(s => {s.graphql = async (query) => {
+    const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {Authorization: `Bearer ${process.env.MERGE_SETTINGS_TOKEN}`, 'Content-Type': 'application/json'},
+      body: JSON.stringify({query, variables: {owner, repo}}),
+    });
+    assert.equal(response.status, 200);
+    const result = await response.json();
+    assert.equal(result.errors, undefined);
+    return result.data;
+  };});
+});
