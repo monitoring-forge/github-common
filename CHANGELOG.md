@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.0.6](https://github.com/monitoring-forge/github-common/compare/v0.0.5...v0.0.6) - 2026-10-08
+
+- ci: テスト成功後にDependabotのtagpr更新を自動マージ by @kazeburo in https://github.com/monitoring-forge/github-common/pull/24
+- ci: 同期用Dependabot設定でgithub-scriptを更新対象から除外 by @kazeburo in https://github.com/monitoring-forge/github-common/pull/29
+- fix: 読み取りトークンでのマージ方式取得を修正 by @kazeburo in https://github.com/monitoring-forge/github-common/pull/28
+- ci: bump actions/github-script from 8.0.0 to 9.0.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/27
+- ci: bump Songmu/tagpr from 1.21.0 to 1.21.1 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/26
+
 ## [v0.0.5](https://github.com/monitoring-forge/github-common/compare/v0.0.4...v0.0.5) - 2026-10-07
 
 - ci: bump the dependencies group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/21
