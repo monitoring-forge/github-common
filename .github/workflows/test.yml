@@ -13,3 +13,5 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - name: Test auto-merge policy
         run: node --test tests/*.test.cjs
+        env:
+          MERGE_SETTINGS_TOKEN: ${{ github.token }}
