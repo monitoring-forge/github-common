@@ -11,6 +11,7 @@ updates:
       default-days: 7
     ignore:
       - dependency-name: "the-pr-agent/pr-agent"
+      - dependency-name: "actions/github-script"
     groups:
       tagpr:
         patterns:
