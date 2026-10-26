@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.0.7](https://github.com/monitoring-forge/github-common/compare/v0.0.6...v0.0.7) - 2026-10-26
+
+- ci: bump Songmu/tagpr from 1.21.1 to 1.21.2 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/31
+- ci: bump Songmu/tagpr from 1.21.2 to 1.21.3 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/34
+- ci: bump the dependencies group across 1 directory with 2 updates by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/32
+
 ## [v0.0.6](https://github.com/monitoring-forge/github-common/compare/v0.0.5...v0.0.6) - 2026-10-08
 
 - ci: テスト成功後にDependabotのtagpr更新を自動マージ by @kazeburo in https://github.com/monitoring-forge/github-common/pull/24
