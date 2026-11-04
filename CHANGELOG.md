@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.0.8](https://github.com/monitoring-forge/github-common/compare/v0.0.7...v0.0.8) - 2026-11-04
+
+- ci: bump Songmu/tagpr from 1.21.3 to 1.21.4 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/35
+- ci: bump the-pr-agent/pr-agent from 0.48.0 to 0.49.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/36
+
 ## [v0.0.7](https://github.com/monitoring-forge/github-common/compare/v0.0.6...v0.0.7) - 2026-10-26
 
 - ci: bump Songmu/tagpr from 1.21.1 to 1.21.2 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/github-common/pull/31
